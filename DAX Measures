@@ -1,0 +1,12 @@
+## DAX Measures  
+- AgeGroup 
+AgeGroup = SWITCH(
+  TRUE(),
+  'customer_detail'[customer_age] < 30, "20-30",
+  'customer_detail'[customer_age] >= 30 && 'customer_detail'[customer_age] < 40, "30-40",
+  'customer_detail'[customer_age] >= 40 && 'customer_detail'[customer_age] < 50, "40-50",
+  'customer_detail'[customer_age] >= 50 && 'customer_detail'[customer_age] < 60, "50-60",
+  'customer_detail'[customer_age] >= 60, "60+",
+  "unknown"
+  )  
+- Incomegroup
