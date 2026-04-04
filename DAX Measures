@@ -1,4 +1,5 @@
 ## DAX Measures  
+## New Column:
 
 - AgeGroup 
 AgeGroup = SWITCH(
@@ -23,6 +24,24 @@ IncomeGroup = SWITCH(
 - Revenue
 Revenue = 'Credit_card detail'[annual fees] + 'Credit_card detail'[total_trans_amt] + 'Credit_card detail'[Interest_eraned]
 
+- Week_num2
+week_num2 = WEEKNUM('credit_card detail'[week_start_date]) 
+
+## New Measure: 
+
+- Current_Week_Revenue = CALCULATE(
+     SUM('Credit_card detail'[Revenue]),
+     FILTER(
+          ALL('Credit_card detail'),
+          'Credit_card detail'[wek_num2] = MAX('Credit_card detail'[week-num2])))
+
+- Previous_week_Revenue = CALCULATE(
+     SUM('Credit_card detail'[Revenue]),
+     FILTER(
+          ALL('Credit_card detail'),
+          'Credit_card detail'[wek_num2] = MAX('Credit_card detail'[week-num2])-1))
+
+- wow_revenue = DIVIDE(([Current_week_revenue] - [Previous_week_revenue]),[Previous_week_revenue])
 
 
 
