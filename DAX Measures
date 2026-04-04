@@ -1,4 +1,5 @@
 ## DAX Measures  
+
 - AgeGroup 
 AgeGroup = SWITCH(
   TRUE(),
@@ -9,4 +10,24 @@ AgeGroup = SWITCH(
   'customer_detail'[customer_age] >= 60, "60+",
   "unknown"
   )  
+
 - Incomegroup
+IncomeGroup = SWITCH(
+   TRUE(),
+   'customer_detail'[income] < 35000, "Low",
+   'customer_detail'[income] >= 35000 && 'customer_detail'[income] <70000, "Med",
+   'customer_detail'[income] >= 70000, "HIgh",
+   "unknown"
+  )
+
+- Revenue
+Revenue = 'Credit_card detail'[annual fees] + 'Credit_card detail'[total_trans_amt] + 'Credit_card detail'[Interest_eraned]
+
+
+
+
+
+
+
+
+
